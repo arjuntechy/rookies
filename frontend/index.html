@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+        }
+        .header{
+            color: blue;
+            background: #fcfc80;
+            height: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction:row;
+            align-items: center;
+            
+
+
+
+        }
+        ul
+        {
+            display: flex;
+            justify-content:space-around;
+            flex-direction: row;
+            padding: 80px;
+        }
+        li{
+            padding-right: 25px;
+            font-size:2em;
+            list-style-type: none;
+
+        }
+        .main
+        {
+            color: aliceblue;
+            background:#8fffad;
+            height:800px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        .flx{
+            height: 500px;
+            width: 90%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .flxbox
+        {
+            width: 49%;
+            height:500px;
+            background: rgb(255, 255, 255);
+            color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            margin:8px 8px;
+            border-radius: 20px;
+            box-shadow: 0px 6px 26px rgb(0, 187, 255);
+            animation: colorchange 5s infinite;
+
+        }
+        @keyframes  colorchange
+        {
+            0%
+            {
+                box-shadow: 0px 6px 26px rgb(255, 187, 0);
+
+            }
+            25%
+            {
+                box-shadow: 0px 6px 26px #8000ff;
+
+            }
+            50%
+            {
+                box-shadow: 0px 6px 26px rgb(55, 0, 255);
+
+            }
+            75%
+             {
+                box-shadow: 0px 6px 26px red;
+
+             }
+             100%
+             {
+
+             }
+        }
+        h1{
+            font-size: 2.5em;
+        }
+        h2{
+            margin: 0%;
+            font-size: 3em;
+        }
+        .dsc
+        {
+            color: black;
+            margin: 10px;
+            background:#fcfc80;
+            font-size: 1.5em;
+        }
+        .contimg{
+            background-image: url('img (2).png');
+            background-position:center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .slider-frame{
+    overflow:hidden;
+    height: 400px;
+    width: 600px;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-bottom: 20px;
+
+  }
+  @-webkit-keyframes slide_animation{
+    0%{left:0px;}
+    10%{left:0px;}
+    20%{left:1200px;}
+    30%{left:1200px;}
+    40%{left:2400px;}
+    50%{left:2400px;}
+    60%{left:1200px;}
+    70%{left:1200px;}
+    80%{left:0px;}
+    90%{left:0px;}
+    100%{left:0px;}
+  }
+  .slide-images{
+    width:3600px;
+    height: 800px;
+    margin:0 0 0 -2400px;
+    position:relative;
+    -webkit-animation-name: slide_animation;
+    -webkit-animation-duration: 33s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-play-state: running;
+  }
+
+  .img-container{
+    height:800px;
+    width:1200px;
+    position:relative;
+    float: left;
+  }
+
+    </style>
+
+</head>
+<body>
+    <div class="header">
+        <div ><img src="logo.png" alt="" height="100px" width="100px"></div>
+        <div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+        
+
+    </div>
+    <div class="main">
+        <div class="flx">
+            <div class="flxbox"><div><h1>Your Most Trusted</h1></div>
+            <div><h2>EDUCATION PARTNER</h2></div><br><br>
+            <div class="dsc">The open-source education website aims to democratize access to quality education resources, empower learners to explore and understand complex concepts, and foster a collaborative learning environment for students, educators, and enthusiasts alike.</div>
+                 </div>
+            <div class="flxbox contimg"></div>
+
+        </div>
+
+    </div>
+    <div class="slider-frame">
+        <div class="slide-images">
+                <div class="img-container">
+                        <img src="slide3.png" height="400px" width="600px">
+                </div>
+                <div class="img-container">
+                        <img src="slide2.png" height="400px" width="600px">
+                </div>
+                <div class="img-container">
+                        <img src="slide1.png" height="400px" width="600px">
+                </div>
+        </div>
+</div>
+
+
+<script src = "js/script.js"></script>
+</body>
+</html>
+</body>
+</html>
