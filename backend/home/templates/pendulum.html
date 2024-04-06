@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pendulum Simulation</title>
+    <style>
+
+        .form {
+            border: 5px solid rgb(0, 0, 0);
+            /*background-color: #17634a;
+            background-image: url(https://images.pexels.com/photos/975012/pexels-photo-975012.jpeg?auto=compress&cs=tinysrgb&w=1060&h=650&dpr=1);*/
+            border-radius: 30px;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 500px;
+            height: 400px;
+            box-shadow: 5px 5px 10px 8px #afafb4, -5px -5px 10px 8px #afafb4;
+        }
+        input[type=number]{
+            width: 80%;
+            height: 50px;
+            margin: 8px 4px;
+            box-sizing: border-box;
+            border: 3px solid #000000;
+            border-radius: 10px;
+        }
+        label{
+            font-family: Arial;
+            font-size: 20px;
+        }
+        .length{
+            position: absolute;
+            top: 100px;
+            left: 50px;
+        }
+        #length{
+            position: absolute;
+            top: 120px;
+            left: 50px;
+        }
+        .angle{
+            position: absolute;
+            top: 200px;
+            left: 50px;
+        }
+        #angle{
+            position: absolute;
+            top: 220px;
+            left: 50px;
+        }
+        #radio{
+            position: absolute;
+            top: 300px;
+            left: 50px;
+        }
+        #simulate{
+            position: absolute;
+            top: 350px;
+            left: 200px;
+        }
+        #pendulum{
+            position: absolute;
+            top: 50px;
+            left: 400px;
+        }
+
+        #stop{
+
+            width: 200px;
+            height: 30px;
+        }
+
+        #result{
+
+            position: absolute;
+            right: 100px;
+            top: 400px;
+            width: 600px;
+            height: 300px;
+        }
+
+        .playground{
+            border: 2px solid black;
+            position: absolute;
+            top: 120px;
+            left: 150px;
+            width: 1000;
+            height: 700;
+        }
+
+    </style>
+</head>
+<body>
+{% if not length and not theta_values %}
+<div class="form">
+    <center><h1 class="black-text">Pendulum Simulation</h1></center>
+    <form method="post">
+        {% csrf_token %}
+        <label class="length">Length (cm)</label><br>
+        <center><input type="number" id="length" name="length" step="any" required><br><br></center>
+        <label class="angle">Initial Angle (degree)</label><br>
+        <center><input type="number" id="angle" name="initial_angle" step="any" required><br><br></center>
+        <div id="radio">
+        <label>Simulation in</label><input type="radio" name="gravity" id="earth" value="1"><label class="earth">Earth</label>
+        <input type="radio" name="gravity" id="moon" value="2"><label class="moon">Moon</label>
+        <input type="radio" name="gravity" is="both" value="3"><label class="both">Both</label>
+            </div>
+        <center><button type="submit" id="simulate">Simulate</button></center>
+    </form>
+</div>
+{% endif %}
+
+<h2>project</h2>
+
+    {% if length and theta_values and choice == "single" %}
+
+
+    <div id="pendulum">
+    <h1> PENDULUM SIMULATION </h1>
+    </div>
+
+    <table border="2" id="result">
+        <tr><th>Parameters</th><th>values</th></th></tr>
+        <tr><td><center>Length</center></td><td><center>{{length}}  cm</center></td></tr>
+        <tr><td><center>Angle</center></td><td><center>{{initial_angle}} degree</center></td></tr>
+        <tr><td><center>Period</center></td><td><center>{{tm}} S</center></td></tr>
+        <tr><td><center>Frequency</center></td><td><center>{{frequency}} hz</center></td></tr>
+        <tr><td colspan="2"><center>
+            <button type="button" id="pause" >pause</button>
+            <button type="button" id="play" >play</button>
+        </center></td></tr>
+    </table>
+
+    <div class="playground">
+        <canvas id="pendulumCanvas" width="1000" height="700"></canvas>
+    </div>
+
+{% endif %}
+
+{% if length and theta_values and choice == "both"  %}
+
+<div class="playground">
+    <canvas id="pendulumCanvas" width="600" height="400"></canvas>
+</div>
+<div class="playground">
+    <canvas id="pendulumCanvas" width="600" height="400"></canvas>
+</div>
+
+{% endif %}
+
+<script>
+
+var canvas = document.getElementById('pendulumCanvas');
+var ctx = canvas.getContext('2d');
+
+var t_values = {{ t_values|safe }};
+var theta_values = {{ theta_values|safe }};
+var length = {{ length|safe }};
+var stopButton = document.getElementById('stop');
+var playButton = document.getElementById('play');
+
+var stopFlag = false; // Flag to control the drawing loop
+var x = (canvas.width)/2; // X-coordinate of the pivot point
+var y = 100; // Y-coordinate of the pivot point
+var scale = 1;
+var i = 0; // Index for iterating through t_values and theta_values
+var storedIndex = 0; // Variable to store the value of 'i' when paused
+var animationInterval = 100; // Adjust the animation interval in milliseconds (e.g., 100ms)
+
+function drawPendulum() {
+    if (!stopFlag) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Adjust these values to change the appearance of the pendulum
+        var pendulumLength = 200; // Adjust the length of the pendulum string
+        var bobRadius = length/15; // Adjust the radius of the bob
+
+        var pendulumX = scale * (x + length * Math.sin(theta_values[i]));
+        var pendulumY = scale * (y + length * Math.cos(theta_values[i]));
+
+        ctx.beginPath();
+        var xx = x+2;
+        ctx.moveTo(xx, y);
+        ctx.arc(xx, y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = 'black';
+        ctx.fill();
+        ctx.moveTo(x, y);
+        ctx.lineWidth = 4;
+        ctx.lineTo(pendulumX, pendulumY);
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(pendulumX, pendulumY, bobRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.closePath();
+
+        i++; // Move to the next frame
+
+        // If 'i' reaches the maximum, reset it to 0
+        if (i >= t_values.length) {
+            i = 0;
+        }
+
+        // Continue the animation after the specified interval
+        setTimeout(drawPendulum, animationInterval);
+    }
+}
+
+// Function to start the animation loop
+function startAnimation() {
+    stopFlag = false;
+    drawPendulum();
+}
+
+// Function to stop the animation loop
+function stopAnimation() {
+    stopFlag = true;
+    storedIndex = i; // Store the current value of 'i'
+}
+
+// Event listener for the "pause" button
+document.getElementById('pause').addEventListener('click', stopAnimation);
+
+// Function to resume the animation loop
+function resumeAnimation() {
+    i = storedIndex; // Set 'i' to the stored index
+    startAnimation();
+}
+
+// Event listener for the "play" button
+document.getElementById('play').addEventListener('click', resumeAnimation);
+
+// Start the animation loop
+startAnimation();
+
+
+
+
+</script>
+
+    
+</body>
+</html>
