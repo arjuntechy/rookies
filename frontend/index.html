@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        
         body{
             margin: 0%;
             padding: 0%;
+            background: rgb(248, 248, 248);
         }
         .header{
             color: blue;
-            background: #fcfc80;
+            background: #fefed3;
             height: 100px;
             width: 100%;
             display: flex;
             justify-content: space-between;
             flex-direction:row;
             align-items: center;
-            
+            margin-bottom: 100px;
 
 
 
@@ -37,7 +39,7 @@
 
         }
         .main
-        {
+        {   
             color: aliceblue;
             background:#8fffad;
             height:800px;
@@ -45,9 +47,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 250px;
+            scroll-behavior: smooth;
         }
         a{
             text-decoration: none;
+            color: #8000ff;
         }
         .flx{
             height: 500px;
@@ -58,8 +63,8 @@
         }
         .flxbox
         {
-            width: 49%;
-            height:500px;
+            width: 35%;
+            height:300px;
             background: rgb(255, 255, 255);
             color: blue;
             display: flex;
@@ -97,22 +102,24 @@
              }
              100%
              {
+                box-shadow: 0px 6px 26px rgb(3, 253, 237);
 
              }
         }
         h1{
-            font-size: 2.5em;
+            font-size:16px;
+            margin: 0%;
         }
         h2{
             margin: 0%;
-            font-size: 3em;
+            font-size: 1.5em;
         }
         .dsc
         {
             color: black;
             margin: 10px;
             background:#fcfc80;
-            font-size: 1.5em;
+            font-size: 13px;
         }
         .contimg{
             background-image: url('img (2).png');
@@ -160,32 +167,116 @@
     position:relative;
     float: left;
   }
+  .footer{
+            padding-top: 15px;
+            display: flex;
+            height:250px;
+            background: #000000;
+            justify-content: center;
+            align-items: center;
+            
+        }
 
+        
+        .footflx
+        {
+            display: flex;
+            justify-content: space-between;
+            
+            
+            border-radius: 15px;
+            gap:10px;
+        }
+        .footflxbox
+        {
+            
+            width: 260px;
+            
+            display: flex;  
+            flex-direction: column;
+                   
+        }
+        .footflxbox:nth-child(3n-1)
+        {
+            text-align: left;
+            
+                   
+        }
+        b{
+            color: cyan;
+        }
+        p{
+            color: rgb(155, 155, 155);
+        }
+        a
+        {
+            color:rgb(0, 255, 170);
+            text-decoration: none;
+        }
+        .fa {
+            font-size: 25px;
+             width: 30px;
+             text-align: center;
+             text-decoration: none;
+  
+             border-radius: 50%;
+        }
+
+        .fa:hover {
+               opacity: 0.7;
+        }
+        .fa-facebook {
+            color:rgb(0, 83, 192)
+}
+        .fa-instagram {
+            color: #c01d8f;
+        }
+        .fa-youtube-play {
+            color: #e70303;
+            font-size: 30px;
+   
+        }
+        .fa-google {
+  
+            color: #ffb30f;
+        }
+ ul>li>a{
+    background:rgb(255, 255, 255);
+    box-shadow:  0px 4px 24px rgb(255, 196, 0);
+    border: 2px ;
+    padding: 5px;
+    border-radius: 21px;
+
+
+ }
+.centerflxbox
+{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top:105%;
+    left: 50%;
+}
+.centerbox
+{
+    height: 300px;
+    width: 300px;
+    background: #8000ff;
+}
     </style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="header">
-        <div ><img src="logo.png" alt="" height="100px" width="100px"></div>
+        <div ><img src="artificial intelligence.png" alt="" height="120px" width="300px"></div>
         <div>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li>About</li>
-                <li>Contact</li>
+                <li><a href="#">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
         
-
-    </div>
-    <div class="main">
-        <div class="flx">
-            <div class="flxbox"><div><h1>Your Most Trusted</h1></div>
-            <div><h2>EDUCATION PARTNER</h2></div><br><br>
-            <div class="dsc">The open-source education website aims to democratize access to quality education resources, empower learners to explore and understand complex concepts, and foster a collaborative learning environment for students, educators, and enthusiasts alike.</div>
-                 </div>
-            <div class="flxbox contimg"></div>
-
-        </div>
 
     </div>
     <div class="slider-frame">
@@ -201,9 +292,54 @@
                 </div>
         </div>
 </div>
+<div class="centerflxbox">
+    <div class="centerbox"></div>
+    <div class="centerbox"></div>
+    <div class="centerbox"></div>
+    <div class="centerbox"></div>
+</div>
+    <div class="main">
+        <div class="flx">
+            <div class="flxbox"><div><h1>Your Most Trusted</h1></div>
+            <div><h2>EDUCATION PARTNER</h2></div><br><br>
+            <div class="dsc">The open-source education website aims to democratize access to quality education resources, empower learners to explore and understand complex concepts, and foster a collaborative learning environment for students, educators, and enthusiasts alike.</div>
+                 </div>
+            <div class="flxbox contimg"></div>
+
+        </div>
+
+    </div>
 
 
-<script src = "js/script.js"></script>
+<div class="footer">
+    <div class="footflx">
+        <div class="footflxbox " id="contact">
+            <b>Useful links</b>
+            <p><a href="">HOME</a></p>
+            <p><a href="">CONTACT US</a></p>
+            <p><a href="">ABOUT US</a></p>
+            <p><a href="">DOWNLOADS</a></p>
+            <p><a href="">FEEDBACK</a></p>
+        </div>
+        <div class="footflxbox"><b>Contact info</b>
+            <p>Hectro plaza,2nd street</p>
+            <p>Trivandrum</p>
+            <p>curiosbrain@gmail.com</p>
+            <p>+91 7356841316</p>
+            <p><a href="#" class="fa fa-instagram"></a><a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-youtube-play"></a>
+                <a href="#" class="fa fa-google"></a></p></div>
+        <div class="footflxbox"><b>Customer care</b>
+            <p style="font-weight: 700;">Our team is available 24/7 <br>
+            to answer your queries</p>
+            <p>Customersupport@curiosbrain.in</p>
+            <p><i>Copyright©2024 shosub All Rights Reserved</i></p>
+            <p></p>
+            <p></p></div>
+           
+    </div>
+</div>
+
 </body>
 </html>
 </body>
