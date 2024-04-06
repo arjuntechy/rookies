@@ -166,7 +166,6 @@ var y = 100; // Y-coordinate of the pivot point
 var scale = 1;
 var i = 0; // Index for iterating through t_values and theta_values
 var storedIndex = 0; // Variable to store the value of 'i' when paused
-var animationInterval = 100; // Adjust the animation interval in milliseconds (e.g., 100ms)
 
 function drawPendulum() {
     if (!stopFlag) {
@@ -203,8 +202,8 @@ function drawPendulum() {
             i = 0;
         }
 
-        // Continue the animation after the specified interval
-        setTimeout(drawPendulum, animationInterval);
+        // Continue the animation
+        requestAnimationFrame(drawPendulum);
     }
 }
 
@@ -234,7 +233,6 @@ document.getElementById('play').addEventListener('click', resumeAnimation);
 
 // Start the animation loop
 startAnimation();
-
 
 
 
